@@ -3,32 +3,34 @@ package clases;
 import java.util.Date;
 
 public class Matricula {
-	private int id_alumno;
-	private int id_asignatura;
+	private Alumno alumno;
+	private Asignatura asignatura;
 	private Date fecha;
+	
 	/**
-	 * @return the id_alumno
+	 * @return the alumno
 	 */
-	public int getId_alumno() {
-		return id_alumno;
+	public Alumno getAlumno() {
+
+		return alumno;
 	}
 	/**
-	 * @param id_alumno the id_alumno to set
+	 * @param alumno the alumno to set
 	 */
-	public void setId_alumno(int id_alumno) {
-		this.id_alumno = id_alumno;
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 	/**
-	 * @return the id_asignatura
+	 * @return the asignatura
 	 */
-	public int getId_asignatura() {
-		return id_asignatura;
+	public Asignatura getAsignatura() {
+		return asignatura;
 	}
 	/**
-	 * @param id_asignatura the id_asignatura to set
+	 * @param asignatura the asignatura to set
 	 */
-	public void setId_asignatura(int id_asignatura) {
-		this.id_asignatura = id_asignatura;
+	public void setAsignatura(Asignatura asignatura) {
+		this.asignatura = asignatura;
 	}
 	/**
 	 * @return the fecha
