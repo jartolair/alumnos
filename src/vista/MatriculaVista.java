@@ -13,6 +13,30 @@ import modelo.MatriculaModelo;
 
 public class MatriculaVista {
 
+	public void menuMatricula(){
+		final int MOSTRAR=1;
+		final int SALIR=0;
+		Scanner lector=new Scanner(System.in);
+		int opcion;
+		do{
+			System.out.println(MOSTRAR+"- Mostrar matriculas");
+			System.out.println(SALIR+"- salir");
+			
+			opcion=Integer.parseInt(lector.nextLine());
+			switch(opcion){
+			case MOSTRAR:
+				MatriculaModelo matriculaModelo=new MatriculaModelo();
+				ArrayList<Matricula> matriculas=matriculaModelo.selectAll();
+				mostarMatriculas(matriculas);
+				
+				break;
+			
+			}
+			
+		}while(opcion!=SALIR);
+	}
+	
+	
 	public void mostarTodasLasMatriculas(){
 		AsignaturaModelo asignaturaModelo=new AsignaturaModelo();
 		AlumnoModelo alumnoModelo=new AlumnoModelo();
@@ -23,8 +47,8 @@ public class MatriculaVista {
 		Iterator<Matricula> i=matriculas.iterator();
 		while(i.hasNext()){
 			Matricula matricula =i.next();
-			Alumno alumno=alumnoModelo.selectPorId(matricula.getId_alumno());
-			Asignatura asignatura=asignaturaModelo.selectPorId(matricula.getId_asignatura());
+			Alumno alumno=alumnoModelo.selectPorId(matricula.getAlumno().getId());
+			Asignatura asignatura=asignaturaModelo.selectPorId(matricula.getAsignatura().getId());
 			
 			
 			mostrarMatriculaAlumnoAsignatura(matricula,alumno,asignatura);
@@ -41,8 +65,8 @@ public class MatriculaVista {
 		Iterator<Matricula> i=matriculas.iterator();
 		while(i.hasNext()){
 			Matricula matricula =i.next();
-			Alumno alumno=alumnoModelo.selectPorId(matricula.getId_alumno());
-			Asignatura asignatura=asignaturaModelo.selectPorId(matricula.getId_asignatura());
+			Alumno alumno=alumnoModelo.selectPorId(matricula.getAlumno().getId());
+			Asignatura asignatura=asignaturaModelo.selectPorId(matricula.getAsignatura().getId());
 			
 			
 			mostrarMatriculaAlumnoAsignatura(matricula,alumno,asignatura);
