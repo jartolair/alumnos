@@ -5,9 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import clases.Alumno;
 import clases.Asignatura;
+import clases.Matricula;
 
 public class AsignaturaModelo extends Conector{
 	public ArrayList<Asignatura> selectAll(){
@@ -85,5 +87,45 @@ public class AsignaturaModelo extends Conector{
 			e.printStackTrace();
 		}
 		return asignatura;
+	}
+	
+	
+
+	public int sumarHoras(ArrayList<Matricula> matriculas) {
+		// TODO Auto-generated method stub
+		Iterator<Matricula> i=matriculas.iterator();
+		int suma=0;
+		while (i.hasNext()){
+			suma=suma+i.next().getAsignatura().getHoras();
+			
+		}
+		return suma;
+	}
+
+	public ArrayList<Asignatura> selectAllConMatriculas() {
+		// TODO Auto-generated method stub
+		MatriculaModelo matriculaModelo=new MatriculaModelo();
+		ArrayList<Asignatura> asignaturas=new ArrayList<>();
+		try {
+			PreparedStatement pst=this.conexion.prepareStatement("Select * from asignaturas");
+			ResultSet rs=pst.executeQuery();
+			while(rs.next()){
+				Asignatura asignatura=new Asignatura();
+				asignatura.setId(rs.getInt("id"));
+				asignatura.setNombre(rs.getString("nombre"));
+				asignatura.setHoras(rs.getInt("horas"));
+				
+				ArrayList<Matricula> matriculas=matriculaModelo.selectPorIdAsignatura(rs.getInt("id"));
+				asignatura.setMatriculas(matriculas);
+				
+				asignaturas.add(asignatura);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return asignaturas;
 	}
 }

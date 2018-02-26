@@ -1,9 +1,24 @@
 package clases;
 
+import java.util.ArrayList;
+
 public class Asignatura {
 	private int id;
 	private String nombre;
 	private int horas;
+	private ArrayList<Matricula> matriculas;
+	/**
+	 * @return the matriculas
+	 */
+	public ArrayList<Matricula> getMatriculas() {
+		return matriculas;
+	}
+	/**
+	 * @param matriculas the matriculas to set
+	 */
+	public void setMatriculas(ArrayList<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
 	/**
 	 * @return the id
 	 */

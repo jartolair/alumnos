@@ -11,6 +11,7 @@ import clases.Alumno;
 
 public class AlumnoModelo extends Conector{
 	public ArrayList<Alumno> selectAll(){
+		MatriculaModelo matriculaModelo=new MatriculaModelo();
 		ArrayList<Alumno> alumnos=new ArrayList<Alumno>();
 		try {
 			Statement st=super.conexion.createStatement();
@@ -21,6 +22,7 @@ public class AlumnoModelo extends Conector{
 				a.setDni(rs.getString("dni"));
 				a.setNombre(rs.getString("nombre"));
 				a.setEmail(rs.getString("email"));
+
 				alumnos.add(a);
 			}
 				
@@ -31,6 +33,34 @@ public class AlumnoModelo extends Conector{
 		return alumnos;
 		
 	}
+	
+	public ArrayList<Alumno> selectAllConMatriculas(){
+		MatriculaModelo matriculaModelo=new MatriculaModelo();
+		ArrayList<Alumno> alumnos=new ArrayList<Alumno>();
+		try {
+			Statement st=super.conexion.createStatement();
+			ResultSet rs=st.executeQuery("Select * from alumnos");
+			while(rs.next()){
+				Alumno a=new Alumno();
+				a.setId(rs.getInt("id"));
+				a.setDni(rs.getString("dni"));
+				a.setNombre(rs.getString("nombre"));
+				a.setEmail(rs.getString("email"));
+				
+				a.setMatriculas(matriculaModelo.selectPorIdAlumno(a.getId()));
+				
+				
+				alumnos.add(a);
+			}
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return alumnos;
+		
+	}
+	
 	
 	public void insert(Alumno alumno){
 		try {
