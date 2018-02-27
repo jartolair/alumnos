@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Provincia {
 	private int id;
-	private int nombre;
+	private String nombre;
 	private ArrayList<Alumno> alumnos;
 	/**
 	 * @return the id
@@ -21,13 +21,13 @@ public class Provincia {
 	/**
 	 * @return the nombre
 	 */
-	public int getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 	/**
 	 * @param nombre the nombre to set
 	 */
-	public void setNombre(int nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	/**

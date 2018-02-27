@@ -9,7 +9,9 @@ public class EscuelaVista {
 		final int MATRICULA=1;
 		final int ALUMNO=2;
 		final int ASIGNATURA=3;
+		final int PROVINCIA=4;
 		final int SALIR=0;
+		
 		Scanner lector=new Scanner(System.in);
 		int opcion;
 		do{
@@ -17,6 +19,7 @@ public class EscuelaVista {
 			System.out.println(MATRICULA+"- Menu de matriculas");
 			System.out.println(ALUMNO+"- Menu de alumnos");
 			System.out.println(ASIGNATURA+"- Menu de asignaturas");
+			System.out.println(PROVINCIA+"- Menu de provincias");
 			System.out.println(SALIR+"- Salir");
 			
 			opcion=Integer.parseInt(lector.nextLine());
@@ -33,9 +36,15 @@ public class EscuelaVista {
 				AsignaturaVista asignaturaVista=new AsignaturaVista();
 				asignaturaVista.menuAsignatura();
 			break;
+			case PROVINCIA:
+				ProvinciaVista provinciaVista=new ProvinciaVista();
+				provinciaVista.menuProvincia();
+			break;
 			case SALIR:
 				System.out.println("Programa terminado");
 				break;
+			default:
+				System.out.println("No existe esa opcion");
 			}
 		}while(opcion!=SALIR);
 	}

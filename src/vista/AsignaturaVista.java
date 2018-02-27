@@ -62,7 +62,7 @@ public class AsignaturaVista {
 		while(i.hasNext()){
 			AlumnoVista alumnoVista=new AlumnoVista();
 			System.out.print("-------");
-			alumnoVista.mostrarAlumno(i.next().getAlumno());
+			alumnoVista.mostrarAlumnoProvincia(i.next().getAlumno());
 		}
 	}
 
@@ -73,7 +73,7 @@ public class AsignaturaVista {
 
 
 	public void mostrarAsignatura(Asignatura asignatura) {
-		System.out.println(asignatura.getNombre()+": "+asignatura.getHoras());
+		System.out.println(asignatura.getNombre()+": "+asignatura.getHoras()+" horas");
 		
 		
 	}

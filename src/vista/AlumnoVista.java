@@ -15,6 +15,7 @@ public class AlumnoVista {
 		final int MOSTRAR_ASIGNATURAS=1;
 		final int MOSTRAR_HORAS=2;
 		final int MOSTRAR_N_ASIGN=3;
+		
 		final int SALIR=0;
 		Scanner lector=new Scanner(System.in);
 		AlumnoModelo alumnoModelo=new AlumnoModelo();
@@ -60,7 +61,7 @@ public class AlumnoVista {
 
 	private void mostrarAlumnoNumAsign(Alumno alumno, int asignaturas) {
 		// TODO Auto-generated method stub
-		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+": "+asignaturas+" asignaturas");
+		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+"("+alumno.getProvincia().getNombre()+"): "+asignaturas+" asignaturas");
 	}
 
 
@@ -82,8 +83,14 @@ public class AlumnoVista {
 
 	private void mostrarAlumnoHoras(Alumno alumno, int horas) {
 		// TODO Auto-generated method stub
-		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+": "+horas+" horas");
+		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+"("+alumno.getProvincia().getNombre()+"): "+horas+" horas");
 	}
+	
+	public void mostrarAlumnoProvincia(Alumno alumno) {
+		// TODO Auto-generated method stub
+		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+" - "+alumno.getProvincia().getNombre());
+	}
+	
 	public void mostrarAlumno(Alumno alumno) {
 		// TODO Auto-generated method stub
 		System.out.println(alumno.getDni()+" - "+alumno.getNombre());
@@ -102,7 +109,7 @@ public class AlumnoVista {
 	private void mostrarAlumnoAsignatura(Alumno alumno) {
 		// TODO Auto-generated method stub
 		AsignaturaVista asignaturaVista=new AsignaturaVista();
-		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+":");
+		mostrarAlumnoProvincia(alumno);
 		Iterator<Matricula> i=alumno.getMatriculas().iterator();
 		
 		while(i.hasNext()){

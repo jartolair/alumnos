@@ -19,6 +19,7 @@ public class MatriculaVista {
 		Scanner lector=new Scanner(System.in);
 		int opcion;
 		do{
+			System.out.println("___________MENU MATRICULAS__________");
 			System.out.println(MOSTRAR+"- Mostrar matriculas");
 			System.out.println(SALIR+"- salir");
 			

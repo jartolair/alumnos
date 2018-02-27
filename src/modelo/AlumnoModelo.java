@@ -12,6 +12,7 @@ import clases.Alumno;
 public class AlumnoModelo extends Conector{
 	public ArrayList<Alumno> selectAll(){
 		MatriculaModelo matriculaModelo=new MatriculaModelo();
+		ProvinciaModelo provinciaModelo=new ProvinciaModelo();
 		ArrayList<Alumno> alumnos=new ArrayList<Alumno>();
 		try {
 			Statement st=super.conexion.createStatement();
@@ -22,7 +23,8 @@ public class AlumnoModelo extends Conector{
 				a.setDni(rs.getString("dni"));
 				a.setNombre(rs.getString("nombre"));
 				a.setEmail(rs.getString("email"));
-
+				
+				a.setProvincia(provinciaModelo.selectPorId(rs.getInt("id_provincia")));
 				alumnos.add(a);
 			}
 				
@@ -37,6 +39,7 @@ public class AlumnoModelo extends Conector{
 	public ArrayList<Alumno> selectAllConMatriculas(){
 		MatriculaModelo matriculaModelo=new MatriculaModelo();
 		ArrayList<Alumno> alumnos=new ArrayList<Alumno>();
+		ProvinciaModelo provinciaModelo=new ProvinciaModelo();
 		try {
 			Statement st=super.conexion.createStatement();
 			ResultSet rs=st.executeQuery("Select * from alumnos");
@@ -48,8 +51,8 @@ public class AlumnoModelo extends Conector{
 				a.setEmail(rs.getString("email"));
 				
 				a.setMatriculas(matriculaModelo.selectPorIdAlumno(a.getId()));
-				
-				
+
+				a.setProvincia(provinciaModelo.selectPorId(rs.getInt("id_provincia")));
 				alumnos.add(a);
 			}
 				
@@ -103,23 +106,45 @@ public class AlumnoModelo extends Conector{
 
 	public Alumno selectPorId(int id) {
 		// TODO Auto-generated method stub
-		Alumno alumno=null;
+		Alumno alumno=new Alumno();
+		ProvinciaModelo provinciaModelo=new ProvinciaModelo();
 		try {
 			Statement st= super.conexion.createStatement();
 			ResultSet rs=st.executeQuery("Select * from alumnos where id="+id);
 			while(rs.next()){
-				alumno=new Alumno();
 				alumno.setId(rs.getInt("id"));
 				alumno.setDni(rs.getString("dni"));
 				alumno.setNombre(rs.getString("nombre"));
 				alumno.setEmail(rs.getString("email"));
 				
+				alumno.setProvincia(provinciaModelo.selectPorId(rs.getInt("id_provincia")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return alumno;
+	}
+
+	public ArrayList<Alumno> selectPorProvincia(int id) {
+		// TODO Auto-generated method stub
+		ArrayList<Alumno> alumnos=new ArrayList<>();
+		try {
+			Statement st= super.conexion.createStatement();
+			ResultSet rs=st.executeQuery("Select * from alumnos where id_provincia="+id);
+			while(rs.next()){
+				Alumno alumno=new Alumno();
+				alumno.setId(rs.getInt("id"));
+				alumno.setDni(rs.getString("dni"));
+				alumno.setNombre(rs.getString("nombre"));
+				alumno.setEmail(rs.getString("email"));
+				alumnos.add(alumno);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return alumnos;
 	}
 	
 
