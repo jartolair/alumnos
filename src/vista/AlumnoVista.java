@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import clases.Alumno;
 import clases.Matricula;
+import comparador.AlumnoNombreComparator;
 import modelo.AlumnoModelo;
 import modelo.AsignaturaModelo;
 
@@ -36,6 +37,7 @@ public class AlumnoVista {
 				
 			case MOSTRAR_HORAS:
 				ArrayList<Alumno> alumnos2=alumnoModelo.selectAllConMatriculas();
+				alumnos2=ordenarAlumnos(alumnos2);
 				mostrarAlumnosHoras(alumnos2);
 				break;
 			case MOSTRAR_N_ASIGN:
@@ -51,6 +53,14 @@ public class AlumnoVista {
 	}
 	
 	
+	private ArrayList<Alumno> ordenarAlumnos(ArrayList<Alumno> alumnos2) {
+		// TODO Auto-generated method stub
+		AlumnoNombreComparator anc=new AlumnoNombreComparator();
+		alumnos2.sort(anc);
+		return alumnos2;
+	}
+
+
 	private void mostrarAlumnosNumAsign(ArrayList<Alumno> alumnos) {
 		// TODO Auto-generated method stub
 		Iterator<Alumno> i =alumnos.iterator();
@@ -72,21 +82,19 @@ public class AlumnoVista {
 		// TODO Auto-generated method stub
 		AsignaturaModelo asignaturaModelo=new AsignaturaModelo();
 		Iterator<Alumno> i =alumnos.iterator();
+		int cont=1;
 		while (i.hasNext()){
+			
 			Alumno alumno=i.next();
 			int horas=asignaturaModelo.sumarHoras(alumno.getMatriculas());
-			mostrarAlumnoHoras(alumno,horas);
-					
+			mostrarContAlumnoHoras(cont,alumno,horas);
+			cont++;	
 		}
 	}
 
-
-
-
-
-	private void mostrarAlumnoHoras(Alumno alumno, int horas) {
+	private void mostrarContAlumnoHoras(int cont,Alumno alumno, int horas) {
 		// TODO Auto-generated method stub
-		System.out.println(alumno.getDni()+" - "+alumno.getNombre()+"("+alumno.getProvincia().getNombre()+"): "+horas+" horas");
+		System.out.println(cont+" - "+alumno.getNombre()+"("+alumno.getProvincia().getNombre()+"): "+horas+" horas");
 	}
 	
 	public void mostrarAlumnoProvincia(Alumno alumno) {
