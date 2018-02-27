@@ -41,7 +41,10 @@ public class AlumnoVista {
 			case MOSTRAR_N_ASIGN:
 				ArrayList<Alumno> alumnos3=alumnoModelo.selectAllConMatriculas();
 				mostrarAlumnosNumAsign(alumnos3);
-			
+			case SALIR:
+				break;
+			default:
+				System.out.println("No existe esa opcion");
 			}
 			
 		}while(opcion!=SALIR);

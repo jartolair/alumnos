@@ -31,7 +31,10 @@ public class MatriculaVista {
 				mostarMatriculas(matriculas);
 				
 				break;
-			
+			case SALIR:
+				break;
+			default:
+				System.out.println("No existe esa opcion");
 			}
 			
 		}while(opcion!=SALIR);

@@ -29,8 +29,10 @@ public class AsignaturaVista {
 				mostrarAsignaturasAlumnos(asignaturas);
 				break;
 
-			default:
+			case SALIR:
 				break;
+			default:
+				System.out.println("No existe esa opcion");
 			}
 		}while(opcion!=SALIR);
 	}
