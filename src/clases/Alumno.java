@@ -8,7 +8,20 @@ public class Alumno {
 	private String nombre;
 	private String email;
 	private ArrayList<Matricula> matriculas;
+	private Provincia provincia;
 	
+	/**
+	 * @return the provincia
+	 */
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	/**
+	 * @param provincia the provincia to set
+	 */
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
 	/**
 	 * @return the matriculas
 	 */
